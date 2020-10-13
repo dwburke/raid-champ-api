@@ -1,0 +1,38 @@
+app:
+  env:
+    name: "dburke"
+    billing:
+      url: "https://billing.dburke.dev.liquidweb.com:20310"
+
+logging:
+  stdout:
+    level: "info"
+  file:
+    enabled: false
+    level: "warn"
+    name: "log.log"
+    maxsize: 1
+    maxbackups: 7
+    maxage: 7
+  sentry:
+    enabled: false
+    dsn: "https://sentry-dsn-here/"
+
+client:
+  prov:
+    address: "127.0.0.1:9700"
+    timeout: 60
+    config: "/home/dburke/lwconfigs/p-client.json"
+
+db:
+  leveldb:
+    datadir: "state"
+
+api:
+  server:
+    enabled: true
+
+auth:
+  token:
+    secret: PUT_SOME_RANDOM_HERE
+    lifespan: 15m

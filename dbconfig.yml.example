@@ -1,0 +1,5 @@
+development:
+  dialect: mysql
+  datasource: raidc:<password>@/raidc?parseTime=true
+  dir: migrations
+

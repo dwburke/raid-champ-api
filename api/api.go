@@ -6,11 +6,11 @@ import (
 	"net"
 	"net/http"
 
+	endpoint_champ "github.com/dwburke/raid-champ-api/api/champ"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	//endpoint_agents "github.com/dwburke/raid-champ-api/api/agents"
 )
 
 var ShutdownCh chan bool
@@ -29,7 +29,7 @@ func SetupRoutes(r *mux.Router) {
 	r.HandleFunc("/ping", Ping).Methods("GET")
 	r.HandleFunc("/login", Login).Methods("GET")
 
-	//endpoint_agents.SetupRoutes(r)
+	endpoint_champ.SetupRoutes(r)
 
 	// display all endpoints that were created by called package(s)
 	r.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
@@ -69,7 +69,7 @@ func Run() {
 
 	r := mux.NewRouter()
 	r.Use(loggingMiddleware)
-	r.Use(AuthMiddleware)
+	//r.Use(AuthMiddleware)
 	SetupRoutes(r)
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Authorization", "Content-Type"})

@@ -13,7 +13,6 @@ import (
 )
 
 func CreateChamp(w http.ResponseWriter, r *http.Request) {
-	conn := db.Open()
 
 	champ := &types.Champ{}
 
@@ -29,8 +28,18 @@ func CreateChamp(w http.ResponseWriter, r *http.Request) {
 
 	champ.Name = cast.ToString(obj["name"])
 
-	if err := conn.Create(&champ).Error; err != nil {
-		helpers.RespondWithError(w, 500, err.Error())
+	if v, ok := obj["rarity"]; ok {
+		champ.Rarity = cast.ToInt(v)
+	}
+	if v, ok := obj["affinity_id"]; ok {
+		champ.AffinityId = cast.ToInt(v)
+	}
+	if v, ok := obj["faction_id"]; ok {
+		champ.FactionId = cast.ToInt(v)
+	}
+
+	if dbc := db.Conn.Create(&champ); dbc.Error != nil {
+		helpers.RespondWithError(w, 500, dbc.Error.Error())
 		return
 	}
 

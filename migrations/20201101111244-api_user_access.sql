@@ -4,7 +4,7 @@ create table api_user_access (
    username varchar(255) not null,
    route varchar(128) not null,
    method varchar(7) not null,
-   key(username, route, method)
+   unique (username, route, method)
 );
 
 -- +migrate Down

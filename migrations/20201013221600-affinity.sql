@@ -6,10 +6,10 @@ create table affinity (
    primary key(id)
 );
 
-insert into affinity values (1, "Magic");
-insert into affinity values (2, "Spirit");
-insert into affinity values (3, "Force");
-insert into affinity values (4, "Void");
+insert into affinity (id,name) values (1, 'Magic');
+insert into affinity (id,name) values (2, 'Spirit');
+insert into affinity (id,name) values (3, 'Force');
+insert into affinity (id,name) values (4, 'Void');
 
 -- +migrate Down
 drop table affinity;

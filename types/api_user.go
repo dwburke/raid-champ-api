@@ -8,8 +8,8 @@ import (
 )
 
 type ApiUser struct {
-	Username string `gorm:"column:username;type:varchar(255);primary_key"`
-	Password string `gorm:"column:password;type:varchar(128)"`
+	Username string `gorm:"column:username;type:varchar(255);primary_key" json:"username"`
+	Password string `gorm:"column:password;type:varchar(128)" json:"password"`
 }
 
 func (ApiUser) TableName() string {

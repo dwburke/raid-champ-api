@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	endpoint_champ "github.com/dwburke/raid-champ-api/api/champ"
+	"github.com/dwburke/raid-champ-api/db"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
@@ -53,6 +54,8 @@ func Run() {
 		log.Println("api.server.enabled == false; not starting")
 		return
 	}
+
+	db.Open()
 
 	var listen string = fmt.Sprintf("%s:%d", viper.GetString("api.server.address"), viper.GetInt("api.server.port"))
 

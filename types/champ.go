@@ -1,7 +1,7 @@
 package types
 
 type Champ struct {
-	Id         int    `gorm:"column:id;type:int;primary_key" mapstructure:"id"`
+	Id         string `gorm:"column:id;type:uuid;primary_key" mapstructure:"id"`
 	Name       string `gorm:"column:name;type:varchar(255)" mapstructure:"name"`
 	Rarity     int    `gorm:"column:rarity;type:int" mapstructure:"rarity"`
 	AffinityId int    `gorm:"column:affinity_id;type:int" mapstructure:"affinity_id"`

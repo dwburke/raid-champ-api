@@ -1,7 +1,7 @@
 
 -- +migrate Up
 create table champ (
-   id serial primary key,
+   id UUID NOT NULL DEFAULT gen_random_uuid(),
    name varchar(255),
    rarity int default 0,
    affinity_id int,
